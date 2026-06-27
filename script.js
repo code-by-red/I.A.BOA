@@ -152,9 +152,8 @@ function openReportModal(eventId, eventName) {
 // Send report to Google Apps Script
 async function sendReportToSheet(reportData) {
     try {
-        const response = await fetch(CONFIG.APPSCRIPT_URL, {
+        const response = await fetch('/api/roles', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -171,9 +170,8 @@ async function sendReportToSheet(reportData) {
 // Add event to Google Apps Script
 async function addEventToSheet(eventData) {
     try {
-        const response = await fetch(CONFIG.APPSCRIPT_URL, {
+        const response = await fetch('/api/roles', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -188,47 +186,32 @@ async function addEventToSheet(eventData) {
     }
 }
 
-// Load events from Google Apps Script using JSONP
-function loadEventsFromSheet() {
-    return new Promise((resolve, reject) => {
-        const callbackName = 'jsonpCallback_' + Date.now();
-        const script = document.createElement('script');
+// Load events from Google Apps Script
+async function loadEventsFromSheet() {
+    try {
+        const response = await fetch('/api/roles');
+        const data = await response.json();
         
-        window[callbackName] = function(data) {
-            delete window[callbackName];
-            document.body.removeChild(script);
-            
-            if (Array.isArray(data)) {
-                events = data;
-                renderEvents();
-                resolve(data);
-            } else if (data && data.events) {
-                events = data.events;
-                renderEvents();
-                resolve(data.events);
-            } else {
-                reject(new Error('Invalid data format'));
-            }
-        };
-        
-        script.src = `${CONFIG.APPSCRIPT_URL}?callback=${callbackName}`;
-        script.onerror = () => {
-            delete window[callbackName];
-            document.body.removeChild(script);
-            
-            // Show error state
-            eventsGrid.innerHTML = `
-                <div class="empty-state col-span-full text-center py-20">
-                    <div class="text-6xl mb-4">⚠️</div>
-                    <h3 class="text-2xl font-bold text-gray-400 mb-2">Erro ao carregar eventos</h3>
-                    <p class="text-gray-500">Verifique a conexão com a planilha</p>
-                </div>
-            `;
-            reject(new Error('Failed to load'));
-        };
-        
-        document.body.appendChild(script);
-    });
+        if (Array.isArray(data)) {
+            events = data;
+            renderEvents();
+        } else if (data && data.events) {
+            events = data.events;
+            renderEvents();
+        } else {
+            throw new Error('Invalid data format');
+        }
+    } catch (error) {
+        console.error('Error loading events:', error);
+        // Show error state
+        eventsGrid.innerHTML = `
+            <div class="empty-state col-span-full text-center py-20">
+                <div class="text-6xl mb-4">⚠️</div>
+                <h3 class="text-2xl font-bold text-gray-400 mb-2">Erro ao carregar eventos</h3>
+                <p class="text-gray-500">Verifique a conexão com a planilha</p>
+            </div>
+        `;
+    }
 }
 
 // Event listeners
