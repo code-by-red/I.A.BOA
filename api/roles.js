@@ -27,9 +27,30 @@ export default async function handler(req, res) {
       console.log('Apps Script response status:', response.status);
       
       const text = await response.text();
-      console.log('Apps Script response text:', text.substring(0, 200));
+      console.log('Apps Script response text (first 500 chars):', text.substring(0, 500));
       
-      const data = JSON.parse(text);
+      // Check if response is HTML (error page)
+      if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+        console.error('Apps Script returned HTML instead of JSON');
+        return res.status(500).json({ 
+          error: 'Apps Script returned HTML instead of JSON',
+          details: 'The Apps Script URL may be incorrect or not published as Web App',
+          responsePreview: text.substring(0, 200)
+        });
+      }
+      
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (parseError) {
+        console.error('Failed to parse JSON:', parseError);
+        return res.status(500).json({ 
+          error: 'Failed to parse JSON response',
+          details: parseError.message,
+          responsePreview: text.substring(0, 200)
+        });
+      }
+      
       console.log('Parsed data:', Array.isArray(data) ? `Array with ${data.length} items` : typeof data);
       
       return res.status(200).json(data);
