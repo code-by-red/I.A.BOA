@@ -1,0 +1,3 @@
+const CONFIG = {
+    APPSCRIPT_URL: 'SUA_URL_DO_APP_SCRIPT_AQUI'
+};

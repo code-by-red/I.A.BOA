@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I A BOA?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen text-white">
+    <!-- Animated Background Grid -->
+    <div class="bg-grid"></div>
+    
+    <!-- Ambient Bubbles -->
+    <div id="bubbles-container"></div>
+    
+    <!-- Particles -->
+    <div id="particles-container"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div>
+                <button id="hamburger-btn" class="hamburger-btn p-3 hover:bg-white/10 rounded-xl transition-all duration-300 group">
+                    <div class="flex flex-col gap-1.5">
+                        <span class="hamburger-line w-6 h-0.5 bg-white group-hover:bg-[#39FF14] transition-colors"></span>
+                        <span class="hamburger-line w-6 h-0.5 bg-white group-hover:bg-[#39FF14] transition-colors"></span>
+                        <span class="hamburger-line w-6 h-0.5 bg-white group-hover:bg-[#39FF14] transition-colors"></span>
+                    </div>
+                </button>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-black gradient-text tracking-tight">I A BOA?</h1>
+            <div class="w-12"></div>
+        </div>
+    </header>
+
+    <!-- Menu Dropdown (Outside header for proper z-index) -->
+    <div id="menu-dropdown" class="menu-dropdown">
+        <a href="sobre.html" class="menu-item">
+            <svg class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Sobre nós</span>
+        </a>
+        <a href="tutorial.html" class="menu-item">
+            <svg class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <span>Tutorial</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-32">
+        <div id="events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards will be rendered dynamically -->
+        </div>
+    </main>
+
+    <!-- FAB Button -->
+    <button id="fab-btn" class="fab-button fixed bottom-8 right-8 w-16 h-16 bg-neon-green rounded-full flex items-center justify-center text-black font-black text-4xl z-40 group">
+        <span class="group-hover:rotate-90 transition-transform duration-300">+</span>
+    </button>
+
+    <!-- Modal -->
+    <div id="modal-overlay" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="modal-content glass-card rounded-3xl p-8 w-full max-w-md max-h-[90vh] overflow-y-auto border border-white/10">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-black gradient-text">Novo Rolê</h2>
+                <button id="close-modal-btn" class="p-3 hover:bg-white/10 rounded-xl transition-all duration-300 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white group-hover:text-[#FF00FF] transition-colors icon-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <form id="event-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Nome do Rolê</label>
+                    <input type="text" id="event-name" required class="w-full px-5 py-4 rounded-xl" placeholder="Ex: Festa na Piscina">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Local</label>
+                    <input type="text" id="event-location" required class="w-full px-5 py-4 rounded-xl" placeholder="Ex: Bar do Zé">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Data e Hora</label>
+                    <input type="datetime-local" id="event-datetime" required class="w-full px-5 py-4 rounded-xl">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Tipo</label>
+                    <select id="event-type" required class="w-full px-5 py-4 rounded-xl">
+                        <option value="gratuito">Gratuito</option>
+                        <option value="pago">Pago</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Avaliação (1-5 estrelas)</label>
+                    <select id="event-rating" required class="w-full px-5 py-4 rounded-xl">
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="1">⭐</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn w-full bg-neon-green text-black font-black py-4 rounded-xl text-lg hover:scale-105 transition-transform duration-300">
+                    Adicionar Rolê
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div id="report-modal-overlay" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="modal-content glass-card rounded-3xl p-8 w-full max-w-md max-h-[90vh] overflow-y-auto border border-white/10">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-black gradient-text">Denunciar Evento</h2>
+                <button id="close-report-modal-btn" class="p-3 hover:bg-white/10 rounded-xl transition-all duration-300 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white group-hover:text-[#FF00FF] transition-colors icon-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <form id="report-form" class="space-y-5">
+                <input type="hidden" id="report-event-id">
+                <input type="hidden" id="report-event-name">
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Evento</label>
+                    <input type="text" id="report-event-display" disabled class="w-full px-5 py-4 rounded-xl bg-white/5 text-gray-400">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Motivo da Denúncia</label>
+                    <textarea id="report-reason" required rows="4" class="w-full px-5 py-4 rounded-xl resize-none" placeholder="Descreva o motivo da denúncia..."></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-300">Seu Contato (opcional)</label>
+                    <input type="text" id="report-contact" class="w-full px-5 py-4 rounded-xl" placeholder="Email ou telefone para contato">
+                </div>
+                <button type="submit" class="submit-btn w-full bg-neon-pink text-white font-black py-4 rounded-xl text-lg hover:scale-105 transition-transform duration-300">
+                    Enviar Denúncia
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

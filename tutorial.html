@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial - I A BOA?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen text-white">
+    <!-- Animated Background Grid -->
+    <div class="bg-grid"></div>
+    
+    <!-- Ambient Bubbles -->
+    <div id="bubbles-container"></div>
+    
+    <!-- Particles -->
+    <div id="particles-container"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div>
+                <button id="hamburger-btn" class="hamburger-btn p-3 hover:bg-white/10 rounded-xl transition-all duration-300 group">
+                    <div class="flex flex-col gap-1.5">
+                        <span class="hamburger-line w-6 h-0.5 bg-white group-hover:bg-[#39FF14] transition-colors"></span>
+                        <span class="hamburger-line w-6 h-0.5 bg-white group-hover:bg-[#39FF14] transition-colors"></span>
+                        <span class="hamburger-line w-6 h-0.5 bg-white group-hover:bg-[#39FF14] transition-colors"></span>
+                    </div>
+                </button>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-black gradient-text tracking-tight">I A BOA?</h1>
+            <div class="w-12"></div>
+        </div>
+    </header>
+
+    <!-- Menu Dropdown -->
+    <div id="menu-dropdown" class="menu-dropdown">
+        <a href="sobre.html" class="menu-item">
+            <svg class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Sobre nós</span>
+        </a>
+        <a href="tutorial.html" class="menu-item">
+            <svg class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <span>Tutorial</span>
+        </a>
+        <div class="menu-divider"></div>
+        <a href="index.html" class="menu-item">
+            <svg class="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span>Voltar para Home</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-32">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 md:p-12 animate-slide-in">
+                <h1 class="text-4xl md:text-5xl font-black gradient-text mb-8">Tutorial</h1>
+                
+                <div class="space-y-8">
+                    <!-- Step 1 -->
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-neon-green rounded-full flex items-center justify-center text-black font-black text-xl">1</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Navegue pelos Eventos</h3>
+                            <p class="text-gray-300">Na página inicial, você verá todos os rolês disponíveis. Cada card mostra o nome, local, data/hora, se é pago ou gratuito, e a avaliação em estrelas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-neon-pink rounded-full flex items-center justify-center text-white font-black text-xl">2</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Adicione um Novo Rolê</h3>
+                            <p class="text-gray-300">Clique no botão <strong class="text-[#39FF14]">+</strong> no canto inferior direito para abrir o formulário. Preencha com o nome do evento, local, data e hora, tipo (pago/gratuito) e avaliação.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-neon-green rounded-full flex items-center justify-center text-black font-black text-xl">3</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Use o Menu</h3>
+                            <p class="text-gray-300">Clique no ícone de menu no canto superior esquerdo para acessar outras páginas do site, como "Sobre nós" e este tutorial.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-neon-pink rounded-full flex items-center justify-center text-white font-black text-xl">4</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Avalie Eventos</h3>
+                            <p class="text-gray-300">Ao adicionar um evento, você pode atribuir uma avaliação de 1 a 5 estrelas. Isso ajuda outros usuários a saberem quais rolês valem a pena!</p>
+                        </div>
+                    </div>
+
+                    <!-- Tips Section -->
+                    <div class="mt-10 p-6 rounded-2xl bg-gradient-to-r from-[#39FF14]/10 to-[#FF00FF]/10 border border-white/10">
+                        <h3 class="text-2xl font-bold gradient-text mb-4">💡 Dicas</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#39FF14]">•</span>
+                                <span>Seja específico ao preencher o local - isso ajuda outros a encontrarem o evento facilmente.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#FF00FF]">•</span>
+                                <span>Adicione eventos com antecedência para que mais pessoas possam planejar.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#39FF14]">•</span>
+                                <span>Avalie com honestidade - sua opinião ajuda a comunidade!</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="text-center mt-10">
+                        <a href="index.html" class="inline-block bg-neon-green text-black font-black py-4 px-8 rounded-xl text-lg hover:scale-105 transition-transform duration-300">
+                            Começar a Usar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Reuse menu functionality
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const menuDropdown = document.getElementById('menu-dropdown');
+        
+        function toggleMenu() {
+            menuDropdown.classList.toggle('open');
+        }
+        
+        function closeMenuOnOutsideClick(e) {
+            if (!hamburgerBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+                menuDropdown.classList.remove('open');
+            }
+        }
+        
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        document.addEventListener('click', closeMenuOnOutsideClick);
+        
+        // Create ambient effects
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles-container');
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.random() * 300 + 100;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                bubble.style.animationDelay = `${Math.random() * 20}s`;
+                bubble.style.animationDuration = `${Math.random() * 20 + 15}s`;
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+        
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-container');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createBubbles();
+        createParticles();
+    </script>
+</body>
+</html>
