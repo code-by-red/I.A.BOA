@@ -32,9 +32,7 @@ function doGet(e) {
   }
   
   return ContentService.createTextOutput(JSON.stringify(events))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeader("Access-Control-Allow-Origin", "*")
-    .setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // doPost - Adiciona novo evento ou denúncia
@@ -60,15 +58,11 @@ function doPost(e) {
     ]);
     
     return ContentService.createTextOutput(JSON.stringify({success: true}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*")
-      .setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+      .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({success: false, error: error.toString()}))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*")
-      .setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
@@ -96,9 +90,7 @@ function handleReport(reportData) {
   sendReportEmail(reportData);
   
   return ContentService.createTextOutput(JSON.stringify({success: true}))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeader("Access-Control-Allow-Origin", "*")
-    .setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // Send report email
@@ -126,13 +118,4 @@ I A BOA? - Sistema de Denúncias
     subject: subject,
     body: body
   });
-}
-
-// doOptions - Para CORS preflight
-function doOptions(e) {
-  return ContentService.createTextOutput("")
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeader("Access-Control-Allow-Origin", "*")
-    .setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-    .setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
