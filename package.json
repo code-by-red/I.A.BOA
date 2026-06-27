@@ -1,0 +1,8 @@
+{
+  "name": "i-a-boa",
+  "version": "1.0.0",
+  "description": "Event listing site",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
